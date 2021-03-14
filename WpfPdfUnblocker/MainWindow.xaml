@@ -1,0 +1,70 @@
+﻿<Window x:Class="MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfPdfUnblocker"
+        mc:Ignorable="d"
+        Title="Pdf解锁工具" Height="500.057" Width="519.08" Loaded="Window_Loaded" Icon="项目2.ico">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
+            <GradientStop Color="#FFEBF7FD" Offset="1"/>
+            <GradientStop Color="#FFFEF4E5"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <DockPanel x:Name="Dockpanel1" Margin="5">
+        <Image Width="{Binding ElementName=Dockpanel1,Path=ActualWidth}"
+            Source="logo.png" DockPanel.Dock="top" 
+               Cursor="Hand" MouseDown="Image_MouseDown"/>
+        <StackPanel Orientation="Horizontal" Margin="0,0,5,5"
+                    DockPanel.Dock="Top">
+            <TextBlock Margin="5">输入文件：</TextBlock>
+            <Button Width="100" Click="Init_Clicked" Margin="0,0,5,0">添加</Button>
+            <Button Width="100" Click="Del_Clicked" Margin="0,0,5,0">删除选中</Button>
+            <Button Width="100" Click="DelAll_Clicked">清空</Button>
+        </StackPanel>
+
+        <Grid DockPanel.Dock="Bottom" Margin="0,5,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="63"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="63"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="60"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Margin="5">输出前缀：</TextBlock>
+            <TextBox x:Name="t1" Grid.Column="1" Margin="5">Unlock -</TextBox>
+            <TextBlock Grid.Column="2" Margin="5">输出后缀：</TextBlock>
+            <TextBox x:Name="t2" Grid.Column="3" Margin="5"></TextBox>
+            <Button x:Name="gobutton" Grid.Column="4" Click="Go_Clicked">开始</Button>
+        </Grid>
+        <Grid DockPanel.Dock="Bottom" Margin="0,5,0,0"  >
+            <ProgressBar x:Name="progbar" Height="20" Maximum="1"/>
+            <TextBlock x:Name="progtext" HorizontalAlignment="Center" VerticalAlignment="Center">等待解锁</TextBlock>
+        </Grid>
+
+        <ListView x:Name="List1">
+            <ListView.View>
+                <GridView x:Name="Gridview1">
+                    <GridViewColumn Header="状态" Width="Auto">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding state}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Header="源文件" Width="Auto" DisplayMemberBinding="{Binding path}"/>
+                    <!--<GridViewColumn Header="" Width="Auto" DisplayMemberBinding="{Binding book_id}"/>-->
+                </GridView>
+            </ListView.View>
+            <ListView.ContextMenu>
+                <ContextMenu >
+                    <MenuItem Header="打开文件" Click="Open_Clicked"/>
+                    <MenuItem Header="打开文件夹" Click="OpenFolder_Clicked"/>
+                </ContextMenu>
+            </ListView.ContextMenu>
+        </ListView>
+        <!--<ProgressBar x:Name="prog" Height="18" Margin="0,6,0,0" IsIndeterminate="True" Visibility="Collapsed"/>-->
+    </DockPanel>
+</Window>

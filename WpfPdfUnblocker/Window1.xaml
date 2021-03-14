@@ -1,0 +1,16 @@
+﻿<Window x:Class="Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfPdfUnblocker"
+        mc:Ignorable="d"
+        Title="请输入密码" Height="155.359" Width="340.363" Loaded="Window_Loaded">
+    <StackPanel>
+        <TextBlock x:Name="text1" Margin="10" TextWrapping="Wrap"/>
+        <TextBox x:Name="pass1" Margin="10"/>
+        <Button Height="20" Width="100"
+                Margin="10,0,10,10" HorizontalAlignment="Right"
+                Content="确定" Click="Button_Click"/>
+    </StackPanel>
+</Window>
